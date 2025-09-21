@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Secure Chat Messenger — Network Security</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container home">
+    <header class="hero">
+      <h1>Secure Chat Messenger</h1>
+      <p>A demo that shows message-level encryption using <strong>AES-GCM</strong> (password → PBKDF2 → AES). Each message uses a fresh salt & IV so every ciphertext is unique.</p>
+      <a class="btn large" href="chat.html">Open Secure Chat Demo →</a>
+    </header>
+
+    <section class="card info">
+      <h2>Why this project?</h2>
+      <ul>
+        <li>Applies AES practically — each message is encrypted with the sender’s password-derived key.</li>
+        <li>Receiver can decrypt only if they know the correct password (salt + IV are embedded).</li>
+        <li>Clear visual of locked/unlocked messages — great for demonstrating confidentiality in class.</li>
+      </ul>
+      <p class="muted">Tip: Use different passwords to show failed decrypts, or the same password to show successful decrypts.</p>
+    </section>
+
+    <footer class="footer">Made for Network Security assignment • Put screenshots in <code>/screenshots</code> if required</footer>
+  </main>
+</body>
+</html>
