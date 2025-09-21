@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Secure Chat — AES Messenger</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container chatpage">
+    <header class="chat-header">
+      <h1>Secure Chat Messenger</h1>
+      <p class="muted">Two panes: <strong>User A</strong> and <strong>User B</strong>. Each message is encrypted (AES-GCM) with the sender's password. The receiver will only be able to read if they know that password.</p>
+    </header>
+
+    <section class="chat-grid">
+      <!-- Chat pane A -->
+      <div class="pane">
+        <div class="pane-head">
+          <div class="avatar avatar-a">A</div>
+          <div>
+            <h3>User A</h3>
+            <input id="pwdA" type="password" placeholder="Password (A)" class="pwd">
+          </div>
+        </div>
+
+        <div id="messagesA" class="messages" aria-live="polite"></div>
+
+        <div class="composer">
+          <textarea id="inputA" placeholder="Message from A..."></textarea>
+          <div class="controls">
+            <button id="sendA" class="btn">Send</button>
+            <button id="clearA" class="btn alt">Clear</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chat pane B -->
+      <div class="pane">
+        <div class="pane-head">
+          <div class="avatar avatar-b">B</div>
+          <div>
+            <h3>User B</h3>
+            <input id="pwdB" type="password" placeholder="Password (B)" class="pwd">
+          </div>
+        </div>
+
+        <div id="messagesB" class="messages" aria-live="polite"></div>
+
+        <div class="composer">
+          <textarea id="inputB" placeholder="Message from B..."></textarea>
+          <div class="controls">
+            <button id="sendB" class="btn">Send</button>
+            <button id="clearB" class="btn alt">Clear</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card demo-note">
+      <h4>How it works</h4>
+      <ol>
+        <li>When A sends, the message is encrypted with A's password and the ciphertext is appended to the shared message list.</li>
+        <li>B's pane auto-attempts to decrypt each new ciphertext using B's password — if it succeeds it shows the plaintext, otherwise it shows <em>Locked</em>.</li>
+        <li>Salt + IV are embedded with each ciphertext so you don't need to manage them separately.</li>
+      </ol>
+      <p class="muted">Try: set both passwords the same — messages will decrypt. Use different passwords — messages will remain locked for the other user.</p>
+      <a href="index.html" class="btn small">← Back</a>
+    </section>
+  </main>
+
+  <script src="aes_chat.js"></script>
+</body>
+</html>
